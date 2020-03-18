@@ -81,7 +81,6 @@ public class LogicalOperatorStack extends Stack {
                         }
                     }
                 }else{
-                    if(operator.equalsIgnoreCase("=")) operator = "==";
                     result.append(firstNode.rawValue()).append(" ").append(operator).append(" ").append(secondNode.rawValue());
                 }
             }

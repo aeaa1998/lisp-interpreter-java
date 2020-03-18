@@ -51,10 +51,10 @@ public class Interpreter {
                 var linkedList = Utils.returnListAsLinked(list.subList(relativePosition + 1, i));
                 iStack newNode;
                 if (quoted){
-                    newNode = NodeFactory.getFactory().createObject(linkedList, true);
+                    newNode = StackFactory.getFactory().createObject(linkedList, true);
                     quoted = false;
                 }else{
-                    newNode = NodeFactory.getFactory().createNode(linkedList);
+                    newNode = StackFactory.getFactory().createNode(linkedList);
                 }
                 nodes.add(newNode);
                 relativePosition = i + 1;

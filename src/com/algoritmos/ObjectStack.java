@@ -62,19 +62,19 @@ public class ObjectStack implements iStack {
                     iStack newNode;
                     if (quoted || objectIsQuoted){
                         if (linkedList.isEmpty()) newNode =  new NilStack(linkedList);
-                        else newNode = NodeFactory.getFactory().createObject(linkedList, true);
+                        else newNode = StackFactory.getFactory().createObject(linkedList, true);
                         if (objectIsQuoted && quoted) newNode.getTokens().addFirst(new QuotedValue(new LinkedList<>(){{add("'");}}));
                         quoted = false;
                     }else{
-                        newNode = NodeFactory.getFactory().createNode(linkedList);
+                        newNode = StackFactory.getFactory().createNode(linkedList);
                     }
                     tokens.add(newNode);
                     relativePosition = i + 1;
                 }
             }else{
                 iStack newNode;
-                if (objectIsQuoted) newNode = NodeFactory.getFactory().createQuotedValue(s);
-                else newNode = NodeFactory.getFactory().createSimpleNode(s);
+                if (objectIsQuoted) newNode = StackFactory.getFactory().createQuotedValue(s);
+                else newNode = StackFactory.getFactory().createSimpleNode(s);
                 tokens.add(newNode);
             }
         }

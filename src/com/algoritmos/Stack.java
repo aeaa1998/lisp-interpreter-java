@@ -48,17 +48,17 @@ public abstract class Stack implements iStack {
             iStack newNode;
             if (quoted){
                 if (linkedList.isEmpty()) newNode =  new NilStack(linkedList);
-                else newNode = NodeFactory.getFactory().createObject(linkedList, true);
+                else newNode = StackFactory.getFactory().createObject(linkedList, true);
                 quoted = false;
                 parentesisCounter = 0;
             }else{
-                newNode = NodeFactory.getFactory().createNode(linkedList);
+                newNode = StackFactory.getFactory().createNode(linkedList);
             }
             tokens.add(newNode);
             relativePosition = i + 1;
                 }
             }else{
-                var newNode = NodeFactory.getFactory().createSimpleNode(s);
+                var newNode = StackFactory.getFactory().createSimpleNode(s);
                 tokens.add(newNode);
             }
         }

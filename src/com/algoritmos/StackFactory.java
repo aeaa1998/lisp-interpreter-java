@@ -11,11 +11,11 @@ import java.util.LinkedList;
 import static com.algoritmos.Utils.isDigit;
 
 
-public class NodeFactory {
+public class StackFactory {
 
 
     //Se aplica singleton para crear una unica instancia
-    private static NodeFactory nodeFactory = null;
+    private static StackFactory nodeFactory = null;
     /**
      *
      * @param list lista con los strings para el nodo
@@ -159,8 +159,14 @@ public class NodeFactory {
             return new ObjectStack(Utils.returnListAsLinked(list.subList(1, list.size())), false);
         }else if(value.equalsIgnoreCase("cond")) {
             return new CondStack(Utils.returnListAsLinked(list.subList(1, list.size())));
+        }else if(value.equalsIgnoreCase("if")) {
+            return new IfStack(Utils.returnListAsLinked(list.subList(1, list.size())));
         }else if(value.equalsIgnoreCase("nth")){
-                return new CondStack(Utils.returnListAsLinked(list.subList(1, list.size())));
+            return new NthStack(Utils.returnListAsLinked(list.subList(1, list.size())));
+        }else if(value.equalsIgnoreCase("elt")){
+            return new EltStack(Utils.returnListAsLinked(list.subList(1, list.size())));
+        }else if(value.equalsIgnoreCase("concatenate")){
+            return new ConcatenateStack(Utils.returnListAsLinked(list.subList(1, list.size())));
         }else if(value.equalsIgnoreCase("defun")){
             if (MainMemory.getMemory().existsFunction(list.get(1))) throw new Exception("Este nombre ya ha sido usado para funcion.");
             if (MainMemory.getMemory().existsVariable(list.get(1))) throw new Exception("Este nombre ya ha sido usado para variable.");
@@ -175,8 +181,8 @@ public class NodeFactory {
      *
      * @return un factory
      */
-    public static NodeFactory getFactory() {
-        if (nodeFactory == null) nodeFactory = new NodeFactory();
+    public static StackFactory getFactory() {
+        if (nodeFactory == null) nodeFactory = new StackFactory();
         return nodeFactory;
     }
 

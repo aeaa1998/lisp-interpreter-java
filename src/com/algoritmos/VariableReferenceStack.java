@@ -25,7 +25,7 @@ public class VariableReferenceStack extends Stack {
         super(sublist);
 
         if (MainMemory.getMemory().existsVariable(name)) value =  MainMemory.getMemory().getVariableNode(name).value;
-        if (!tokens.isEmpty()) value = tokens.get(0).run();
+        if (!tokens.isEmpty()) value = tokens.get(0).rawValue();
         variableName = name;
 
     }
@@ -57,9 +57,9 @@ public class VariableReferenceStack extends Stack {
             if (tokens.size() > 1) throw new Exception("Error de sintaxis al asignarle valor a la variable " + value);
             if (tokens.isEmpty()) throw new Exception("No value passed for variable " + variableName);
             else if (tokens.get(0).run() == null) throw new Exception("Invalid value");
-            return value;
+            return value.replace("\"", "");
         }else{
-            return value;
+            return value.replace("\"", "");
         }
 
     }
@@ -70,7 +70,14 @@ public class VariableReferenceStack extends Stack {
     //No se utiliza aca
     @Override
     public String rawValue() throws Exception {
-        return run();
+        if (scope.equalsIgnoreCase("global")){
+            if (tokens.size() > 1) throw new Exception("Error de sintaxis al asignarle valor a la variable " + value);
+            if (tokens.isEmpty()) throw new Exception("No value passed for variable " + variableName);
+            else if (tokens.get(0).run() == null) throw new Exception("Invalid value");
+            return value;
+        }else{
+            return value;
+        }
     }
 
     /**
