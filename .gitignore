@@ -1,2 +1,14 @@
 /out/
-LispInterpreter.iml
+out/
+out
+
+*.iml
+/.idea/
+.idea/
+.idea
+
+/bin/
+bin/
+bin
+
+
