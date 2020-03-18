@@ -28,6 +28,7 @@ public class Constants {
      */
     public static final ArrayList<String> LOGICAL_TOKENS  = new ArrayList<String>(){{
         add("EQUAL");
+        add("=");
         add("ATOM");
         add("<");
         add("<=");

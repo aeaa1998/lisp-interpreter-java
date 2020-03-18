@@ -24,7 +24,14 @@ public class VariableReferenceStack extends Stack {
         super(sublist);
 
         if (MainMemory.getMemory().existsVariable(name)) value =  MainMemory.getMemory().getVariableNode(name).value;
-        if (!tokens.isEmpty()) value = tokens.get(0).run();
+
+        if (!tokens.isEmpty()){
+            if(tokens.get(0).rawValue().startsWith("\"") && tokens.get(0).rawValue().endsWith("\""))
+                value = "\"" + tokens.get(0).run() + "\"";
+            else
+                value = tokens.get(0).run();
+        }
+
         variableName = name;
 
     }
