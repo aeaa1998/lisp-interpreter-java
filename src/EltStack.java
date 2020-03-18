@@ -16,6 +16,7 @@ public class EltStack extends Stack {
         if(tokens.size() != 2) throw new Exception("Elt should receive two elements");
 
         String holder = tokens.get(0).rawValue();
+        System.out.println(holder);
 
         if (holder.startsWith("\"") && holder.endsWith("\""))
             return;

@@ -14,32 +14,9 @@ public class ConcatenateStack extends Stack {
      */
     public ConcatenateStack(LinkedList<String> list) throws Exception {
         super(list);//Hace referencia a la clase node
-        //Recorre la lista tokends
-        for (int i = 0; i < tokens.size(); i++) {
-            //Si el elemento es parte del nodo referencia entonces hacemos un set
-            if (tokens.get(i) instanceof VariableReferenceStack)
-                tokens.set(i, tokens.get(i).getTokens().get(0));
-        }
-        //si es un string entonces miramos que sea parte del array donde tenemos los strings
-        //sino esta ahi entonces no podemos concatenar
-        if (tokens.get(0).rawValue().equalsIgnoreCase("string")) {
-            for (int i = 1; i < tokens.size(); i++)
-                if (!(tokens.get(i) instanceof StringStack))
-                //if (!(tokens.get(i) instanceof StringStack))
 
-                    throw new Exception("Solo se pueden concatenar strings a strings");
-        //Se verifica si esta en algun arraylist de string node o object node
-        } else if (tokens.get(0).rawValue().equalsIgnoreCase("list")) {
-            for (int i = 1; i < tokens.size(); i++)
-                if (!(tokens.get(i) instanceof StringStack || tokens.get(i) instanceof ObjectStack))
-                    throw new Exception(tokens.get(0).rawValue() + " no es una secuencia aceptada.");
-
-        } else {
+        if(!tokens.get(0).rawValue().equalsIgnoreCase("string") && !tokens.get(0).rawValue().equalsIgnoreCase("list"))
             throw new Exception("La secuencia " + tokens.get(0).rawValue() + " no existe.");
-        }
-
-
-
     }
 
     //Hace que los elementos de una lista se concatenen
@@ -50,44 +27,52 @@ public class ConcatenateStack extends Stack {
         String string = "";
         //Si es un string entonces lo agregamos al string builder
         if (tokens.get(0).run().equalsIgnoreCase("string")){
-            StringBuffer stringBuilder = new StringBuffer();//Es un string que puede crecer
-            for (int i = 1; i < tokens.size(); i++)
-                    stringBuilder.append(tokens.get(i).run());
+            String holder;
 
-            string = "\"" + stringBuilder.toString().replace("\"", "") + "\"";
+            StringBuffer stringBuilder = new StringBuffer();//Es un string que puede crecer
+            for (int i = 1; i < tokens.size(); i++) {
+
+                holder = tokens.get(i).rawValue();
+                tokens.get(i).run();
+                if (!holder.startsWith("\"") || !holder.endsWith("\""))
+                    throw new Exception(holder + " no es un string");
+
+                stringBuilder.append(holder.substring(1, holder.length() - 1));
+            }
+
+            string = "\"" + stringBuilder.toString() + "\"";
+
+
 
         } else if (tokens.get(0).run().equalsIgnoreCase("list")){
+
+            String holder;
             StringBuffer stringBuilder = new StringBuffer();
 
-            for (int i = 1; i < tokens.size(); i++){
 
-                if (tokens.get(i) instanceof StringStack){
-                    String temp = tokens.get(i).run().replace("\"", "");
-                    stringBuilder.append(" ");
-                    for (char caracter: temp.toCharArray()) {
-                        stringBuilder.append("#\\");
-                        stringBuilder.append(caracter);
-                        stringBuilder.append(" ");
+            for (int i = 1; i < tokens.size(); i++) {
+                holder = tokens.get(i).rawValue();
+                tokens.get(i).run();
+
+                if (holder.startsWith("\"") && holder.endsWith("\"")) {
+                    for (char caracter : holder.substring(1, holder.length() - 1).toCharArray()) {
+                        stringBuilder.append("\\#" + caracter + " ");
                     }
-                }
 
-                if (tokens.get(i) instanceof ObjectStack) {
-                    stringBuilder.append(
-                            tokens.get(i).run().
-                                    replace("(", "").
-                                    replace(")", ""));
+                } else if (holder.startsWith("(") && holder.endsWith(")")) {
+                    String[] holder2 = holder.substring(1, holder.length() - 1).trim().split(" ");
+                    for (String cadenaSimple : holder2)
+                        stringBuilder.append(cadenaSimple + " ");
+
                 }
             }
-            //Es un ciclo para recorre el string builder y eliminar los espacios " "
-            for (int i = 1; i < stringBuilder.length(); i++) {
-                if (stringBuilder.charAt(i) == ' ' && stringBuilder.charAt(i - 1) == ' ')
-                    stringBuilder.deleteCharAt(i);
-            }
-            //se agregan parentesis para respetar sintaxis
-            string = "(" + stringBuilder.toString() + ")";
-        }
 
-        return string.toString();
+            string = "( " + stringBuilder.toString() + ")";
+
+        } else
+                throw new Exception("Elt debe recibir solo secuencias.");
+
+        return string;
     }
 
     /**
