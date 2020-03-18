@@ -59,7 +59,7 @@ public class LogicalOperatorStack extends Stack {
                         .append(secondNode.run())
                         .append("\"");
             }else{
-                if (operator.equalsIgnoreCase("EQUAL")){
+                if (operator.equalsIgnoreCase("EQUAL") || operator.equalsIgnoreCase("=")){
                     if (firstNode.rawValue().contains("\"") && secondNode.rawValue().contains("\"")){
                         result.append(firstNode.rawValue()).append(" == ").append(secondNode.rawValue());
                     }else if (
@@ -109,7 +109,7 @@ public class LogicalOperatorStack extends Stack {
      * @throws Exception
      */
     public boolean canCompare(iStack node1, iStack node2, String operator) throws Exception{
-        if (operator.equalsIgnoreCase("EQUAL")) return true;
+        if (operator.equalsIgnoreCase("EQUAL") || operator.equalsIgnoreCase("=")) return true;
         else
 //            (operator.equalsIgnoreCase(">") || operator.equalsIgnoreCase("<") ||
 //                operator.equalsIgnoreCase("=") || operator.equalsIgnoreCase(">=")
