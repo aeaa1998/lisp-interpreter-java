@@ -22,6 +22,11 @@ public class ConcatenateStack extends Stack {
     //Hace que los elementos de una lista se concatenen
     //va ingresando a la lista y revisando elemento por elemento hasta que queda junto todo
 
+    /**
+     * Devuelve una nueva lista o string con las secuencias dadas.
+     * @return sequencia de las sequencias combinadas
+     * @throws Exception
+     */
     @Override
     public String run() throws Exception {
         String string = "";
@@ -76,9 +81,9 @@ public class ConcatenateStack extends Stack {
     }
 
     /**
-     *
-     * @return un string para seguir concatenando
-     * @throws Exception por interface
+     * Devuelve una nueva lista o string con las secuencias dadas.
+     * @return sequencia de las sequencias combinadas
+     * @throws Exception
      */
     @Override
     public String rawValue() throws Exception {
@@ -86,9 +91,9 @@ public class ConcatenateStack extends Stack {
     }
 
     /**
-     *
-     * @return si es o no un string
-     * @throws Exception por la interface
+     * Si la nueva sequencia es un atom o no
+     * @return true si la nueva secuencia es un String
+     * @throws Exception
      */
     @Override
     public boolean isAtom() throws Exception {

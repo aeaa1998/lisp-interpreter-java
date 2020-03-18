@@ -11,6 +11,11 @@ public class IfStack extends Stack {
         if (tokens.size() != 2 && tokens.size() != 3) throw new Exception("Error en if");
     }
 
+    /**
+     * Devuelve el valor del primer argumento si la condición es cierta, el segundo si es falsa o null si no existe
+     * @return Primer arguemento, Null o segundo argumento
+     * @throws Exception
+     */
     @Override
     public String run() throws Exception {
 
@@ -27,11 +32,21 @@ public class IfStack extends Stack {
 
     }
 
+    /**
+     * Devuelve el valor del primer argumento si la condición es cierta, el segundo si es falsa o null si no existe
+     * @return Primer arguemento, Null o segundo argumento
+     * @throws Exception
+     */
     @Override
     public String rawValue() throws Exception {
         return run();
     }
 
+    /**
+     * Calcula que valor devuelve el if y ve si el valor es un atom
+     * @return T o Nil, dependiendo de los valores de if
+     * @throws Exception
+     */
     @Override
     public boolean isAtom() throws Exception {
         if(!tokens.get(0).rawValue().equalsIgnoreCase("nil")){

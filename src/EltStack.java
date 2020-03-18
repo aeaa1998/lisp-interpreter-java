@@ -6,11 +6,8 @@
 import java.util.LinkedList;
 
 public class EltStack extends Stack {
-    /**
-     *
-     * @param list
-     * @throws Exception
-     */
+
+
     public EltStack(LinkedList<String> list) throws Exception {
         super(list);
         if(tokens.size() != 2) throw new Exception("Elt should receive two elements");
@@ -28,8 +25,7 @@ public class EltStack extends Stack {
     }
 
     /**
-     *
-     * @return
+     * @return El elemento de la secuencia con el índice dado
      * @throws Exception
      */
     @Override
@@ -51,11 +47,19 @@ public class EltStack extends Stack {
 
     }
 
+    /**
+     * @return El elemento de la secuencia con el índice dado
+     * @throws Exception
+     */
     @Override
     public String rawValue() throws Exception {
         return run();
     }
 
+    /**
+     * @return Si el elemento dado por la función run es un atom.
+     * @throws Exception
+     */
     @Override
     public boolean isAtom() throws Exception {
         String holder = rawValue();

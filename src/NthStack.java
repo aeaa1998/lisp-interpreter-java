@@ -21,6 +21,11 @@ public class NthStack extends Stack {
         index = Integer.parseInt(tokens.get(0).rawValue());
     }
 
+    /**
+     *
+     * @return elemento en la lista con el índice dado o nil
+     * @throws Exception
+     */
     @Override
     public String run() throws Exception {
         var holder = tokens.get(1).rawValue();
@@ -29,20 +34,24 @@ public class NthStack extends Stack {
         return list[index];
     }
 
-    private iStack NthStack() throws Exception {
-
-
-        return tokens.get(1).getTokens().get(index);
-    }
-
+    /**
+     *
+     * @return elemento en la lista con el índice dado o nil
+     * @throws Exception
+     */
     @Override
     public String rawValue() throws Exception {
         return run();
     }
 
+    /**
+     * Calcula si el elemento en la lista es un atom
+     * @return true si era un atom o no existía un elemento con ese índice
+     * @throws Exception
+     */
     @Override
     public boolean isAtom() throws Exception {
-            return NthStack().isAtom();
+            return tokens.get(1).getTokens().get(index).isAtom();
 
     }
 }
