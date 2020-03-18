@@ -31,6 +31,7 @@ public class Constants {
         add("EQUAL");
         add("ATOM");
         add("<");
+        add("=");
         add("<=");
         add(">");
         add(">=");

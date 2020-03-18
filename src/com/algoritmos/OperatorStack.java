@@ -10,6 +10,8 @@ import static com.algoritmos.Utils.isDigit;
  * @Title proyecto LISP
  */
 
+//(DEFUN FTOC (TEMP)(/ (- TEMP 32) 1.8))
+//(DEFUN FIBONACCI (N)(COND ((= N 0) 1)((= N 1) 1)(T (+ (FIBONACCI (- N 1))(FIBONACCI (- N 2))))))
 public class OperatorStack extends Stack {
     private String operator;
 
