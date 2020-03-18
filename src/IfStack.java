@@ -5,24 +5,26 @@
 
 import java.util.LinkedList;
 
-public class IfNode extends Stack {
-    public IfNode(LinkedList<String> list) throws Exception {
+public class IfStack extends Stack {
+    public IfStack(LinkedList<String> list) throws Exception {
         super(list);
         if (tokens.size() != 2 && tokens.size() != 3) throw new Exception("Error en if");
     }
 
     @Override
     public String run() throws Exception {
-        if (!tokens.get(0).rawValue().equalsIgnoreCase("T") && !tokens.get(0).rawValue().equalsIgnoreCase("nil"))
-            throw new Exception("Valor pasado a IF no es booleano " + tokens.get(0).rawValue());
 
-        if(tokens.get(0).rawValue().equalsIgnoreCase("T")){
+        if(!tokens.get(0).rawValue().equalsIgnoreCase("nil"))
             return tokens.get(1).run();
 
-        } else if (tokens.size() == 3)
+         else if (tokens.size() == 3)
             return  tokens.get(2).run();
 
-        return null;
+         else if (tokens.size() == 2)
+             return "nil";
+
+         throw new Exception("IF solo acepta dos o tres parametros");
+
     }
 
     @Override
@@ -32,12 +34,16 @@ public class IfNode extends Stack {
 
     @Override
     public boolean isAtom() throws Exception {
-        if(tokens.get(0).rawValue().equalsIgnoreCase("T")){
+        if(!tokens.get(0).rawValue().equalsIgnoreCase("nil")){
             return tokens.get(1).isAtom();
 
         } else if (tokens.size() == 3)
             return  tokens.get(2).isAtom();
 
-        throw new Exception("No se puede verificar si dicho valor es atom");
+        else if(tokens.size() == 2)
+            return true;
+
+        throw new Exception("IF solo acepta dos o tres parametros");
+
     }
 }

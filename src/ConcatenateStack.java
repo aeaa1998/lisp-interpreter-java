@@ -6,13 +6,13 @@
 import java.util.LinkedList;
 
 //Basicamente esta clase se encarga de ver que elementos se pueden concatenar con otros
-public class ConcatenateNode extends Stack {
+public class ConcatenateStack extends Stack {
     /**
      *
      * @param list recibe una lista de strings con las instrucciones
      * @throws Exception por la interface
      */
-    public ConcatenateNode(LinkedList<String> list) throws Exception {
+    public ConcatenateStack(LinkedList<String> list) throws Exception {
         super(list);//Hace referencia a la clase node
         //Recorre la lista tokends
         for (int i = 0; i < tokens.size(); i++) {
@@ -25,6 +25,8 @@ public class ConcatenateNode extends Stack {
         if (tokens.get(0).rawValue().equalsIgnoreCase("string")) {
             for (int i = 1; i < tokens.size(); i++)
                 if (!(tokens.get(i) instanceof StringStack))
+                //if (!(tokens.get(i) instanceof StringStack))
+
                     throw new Exception("Solo se pueden concatenar strings a strings");
         //Se verifica si esta en algun arraylist de string node o object node
         } else if (tokens.get(0).rawValue().equalsIgnoreCase("list")) {
