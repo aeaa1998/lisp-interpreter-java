@@ -2,7 +2,6 @@
  * @author Augusto Alonso 181085, Pablo Mendez 19195, Dvid Cuellar 18382
  * @Title proyecto LISP
  */
-import com.algoritmos.PrimitiveStack;
 
 import java.util.LinkedList;
 

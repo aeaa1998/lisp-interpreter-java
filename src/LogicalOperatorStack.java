@@ -5,8 +5,6 @@
 
 import java.util.LinkedList;
 
-import static Utils.isDigit;
-
 
 public class LogicalOperatorStack extends Stack {
     private String operator;
@@ -65,8 +63,8 @@ public class LogicalOperatorStack extends Stack {
                     if (firstNode.rawValue().contains("\"") && secondNode.rawValue().contains("\"")){
                         result.append(firstNode.rawValue()).append(" == ").append(secondNode.rawValue());
                     }else if (
-                            (!isDigit(firstNode.rawValue()) && isDigit(secondNode.rawValue())) ||
-                            (!isDigit(secondNode.rawValue()) && isDigit(firstNode.rawValue()))
+                            (!Utils.isDigit(firstNode.rawValue()) && Utils.isDigit(secondNode.rawValue())) ||
+                            (!Utils.isDigit(secondNode.rawValue()) && Utils.isDigit(firstNode.rawValue()))
                     ){
                         return "NIL";
                     }else if (firstNode instanceof BooleanStack || secondNode instanceof BooleanStack){
@@ -118,7 +116,7 @@ public class LogicalOperatorStack extends Stack {
 //        || operator.equalsIgnoreCase("<="))
     {
             if (!node1.isAtom() || !node2.isAtom()) return false;
-            return isDigit(node1.rawValue()) && isDigit(node2.rawValue());
+            return Utils.isDigit(node1.rawValue()) && Utils.isDigit(node2.rawValue());
         }
     }
 

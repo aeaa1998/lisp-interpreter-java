@@ -6,8 +6,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static Utils.isDigit;
-
 
 public class NodeFactory {
 
@@ -97,7 +95,7 @@ public class NodeFactory {
         }
         if (MainMemory.getMemory().existsVariable(string)) {
             return MainMemory.getMemory().getVariableNode(string);
-        } else if (isDigit(string)){
+        } else if (Utils.isDigit(string)){
             return new DoubleStack(list);
         } else if(String.valueOf(string.charAt(0)).equalsIgnoreCase("\"")){
             if(String.valueOf(string.charAt(string.length() - 1)).equalsIgnoreCase("\"")) return new StringStack(list);

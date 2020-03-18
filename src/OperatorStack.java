@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 
-import static Utils.isDigit;
 
 
 /**
@@ -33,7 +32,7 @@ public class OperatorStack extends Stack {
                 }
 
             }
-            if (isDigit(node.run()) || node.isAtom()){
+            if (Utils.isDigit(node.run()) || node.isAtom()){
                 if (i == 0) result = new StringBuilder(node.run() + " ");
                 else result.append(operator).append(" ").append(node.run());
             }else{
