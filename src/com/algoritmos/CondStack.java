@@ -65,7 +65,7 @@ public class CondStack extends Stack {
                 if (!holder.scope.equalsIgnoreCase("global")){
                     holder = MainMemory.getMemory().getVariableNode(MainMemory.getMemory().getFunctionNameScope() + holder.normalName);
                 }
-                list.getTokens().set(0, holder);
+                list.getTokens().set(i, holder);
             }
 
         }

@@ -37,16 +37,15 @@ public class IfStack extends Stack {
     }
 
     @Override
-    public boolean isAtom() throws Exception {
-        if(!tokens.get(0).rawValue().equalsIgnoreCase("nil")){
+    public boolean isAtom() throws Exception{
+        if(!tokens.get(0).rawValue().equalsIgnoreCase("NIL")){
             return tokens.get(1).isAtom();
 
         } else if (tokens.size() == 3)
             return  tokens.get(2).isAtom();
 
-        else if(tokens.size() == 2)
+        else if (tokens.size() == 2)
             return true;
-
         throw new Exception("IF solo acepta dos o tres parametros");
     }
 }

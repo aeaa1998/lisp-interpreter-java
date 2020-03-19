@@ -13,7 +13,7 @@ public class CreateFunctionStack implements iStack {
         add("\""); add("'"); add("-");
         addAll(Constants.OPERATORS_TOKENS); addAll(Constants.LOGICAL_TOKENS);
         add(".");
-        addAll(Constants.NUMBERS);
+//        addAll(Constants.NUMBERS);
     }};
     //Se crea arraylist con los valores con las funciones de lisp
     private ArrayList<String> invalidNames = new ArrayList<>(){{ addAll(Constants.LISP_RESTRICTED_VALUES); addAll(Constants.LISP_UTILS);}};

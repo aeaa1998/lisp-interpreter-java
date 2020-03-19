@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Controller {
     private Interpreter interpreter = new Interpreter();
-    private ArrayList<String> menu = new ArrayList<>(){{add("Probar Secuencia fibonnacci");
+    private ArrayList<String> menu = new ArrayList<>(){{add("Probar Codigo ejemplo de cada funcion");
     add("Iniciar Consola (Se ira ingresando el codigo por  statements)");}};
     private String fibonnacciString = "" +
             "(defun lol (x y) (- x y))\n" +
@@ -34,7 +34,14 @@ public class Controller {
             "(print '( '(1 2 porfavor Esto es Un CiEn) 2 3 '( '(1 test fun) 4 ) ) ) \n" +
             "(print \"Puede imprimir y generar listas anidadas y normales\")\n" +
             "(print (list 1 2 345 (list 1 2 (list 1 0 0 0) 0) 0)\n)" +
-            "(print ())\n"
+            "(print ())\n" +
+            "(print \"Estos son ejemplos de concatenate\")" +
+            "(print ( Concatenate 'string \"Esto\" \" es\" \" Lisp.\"))\n" +
+            "(print ( Concatenate 'list '( A B) '(C) \"D\"))\n" +
+            "(print \"Ejemplo del elt\")\n" +
+            "(print (elt '(a b c) 0))\n" +
+            "(print \"Ejemplo del if\")\n" +
+            "(print (if (< 1 2) 2 1))"
             ;
     /**
      * Funcion que incia el programa
